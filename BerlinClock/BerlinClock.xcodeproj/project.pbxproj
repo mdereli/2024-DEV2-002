@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A0142E4B2B305F3700074CCD /* BerlinClockScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0142E4A2B305F3700074CCD /* BerlinClockScreenViewModel.swift */; };
+		A0142E4D2B306F2A00074CCD /* BerlinClockScreenViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0142E4C2B306F2A00074CCD /* BerlinClockScreenViewModelTests.swift */; };
 		A014B45F2B2E42E000FC8076 /* BerlinClockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A014B45E2B2E42E000FC8076 /* BerlinClockApp.swift */; };
 		A014B4612B2E42E000FC8076 /* BerlinClockScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A014B4602B2E42E000FC8076 /* BerlinClockScreen.swift */; };
 		A014B4632B2E42E200FC8076 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A014B4622B2E42E200FC8076 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		A0142E4A2B305F3700074CCD /* BerlinClockScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockScreenViewModel.swift; sourceTree = "<group>"; };
+		A0142E4C2B306F2A00074CCD /* BerlinClockScreenViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockScreenViewModelTests.swift; sourceTree = "<group>"; };
 		A014B45B2B2E42E000FC8076 /* BerlinClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BerlinClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A014B45E2B2E42E000FC8076 /* BerlinClockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockApp.swift; sourceTree = "<group>"; };
 		A014B4602B2E42E000FC8076 /* BerlinClockScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockScreen.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				A014B46F2B2E42E200FC8076 /* BerlinClockTests.swift */,
+				A0142E4C2B306F2A00074CCD /* BerlinClockScreenViewModelTests.swift */,
 			);
 			path = BerlinClockTests;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A014B4702B2E42E200FC8076 /* BerlinClockTests.swift in Sources */,
+				A0142E4D2B306F2A00074CCD /* BerlinClockScreenViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
