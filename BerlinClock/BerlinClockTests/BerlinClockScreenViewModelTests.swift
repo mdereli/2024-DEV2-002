@@ -32,4 +32,12 @@ final class BerlinClockScreenViewModelTests: XCTestCase {
     func testCurentTime() {
         XCTAssertFalse(sut.currentTime.isEmpty)
     }
+
+    func testIs5HoursBlockHighlighted() {
+        XCTAssertFalse(sut.is5HoursBlockHighlighted(for: 1))
+    }
+
+    func testIs1HourBlockHighlighted() {
+        XCTAssertFalse(sut.is1HourBlockHighlighted(for: 1))
+    }
 }

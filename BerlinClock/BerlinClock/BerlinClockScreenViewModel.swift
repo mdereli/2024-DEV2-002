@@ -17,4 +17,11 @@ final class BerlinClockScreenViewModel: ObservableObject {
         numberOf1MinuteLamps = 10
     }
 
+    func is5HoursBlockHighlighted(for blockPosition: Int) -> Bool {
+        return true
+    }
+
+    func is1HourBlockHighlighted(for blockPosition: Int) -> Bool {
+        return true
+    }
 }
