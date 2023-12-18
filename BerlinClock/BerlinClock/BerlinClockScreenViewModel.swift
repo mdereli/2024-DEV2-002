@@ -15,6 +15,8 @@ final class BerlinClockScreenViewModel: ObservableObject {
         numberOf1HourLamps = 10
         numberOf5MinutesLamps = 10
         numberOf1MinuteLamps = 10
+
+        formatCurrentTime()
     }
 
     func is5HoursBlockHighlighted(for blockPosition: Int) -> Bool {
@@ -23,5 +25,19 @@ final class BerlinClockScreenViewModel: ObservableObject {
 
     func is1HourBlockHighlighted(for blockPosition: Int) -> Bool {
         return true
+    }
+
+    func is5minutesBlockHighlighted(for blockPosition: Int) -> Bool{
+        return true
+    }
+
+    func is1minuteBlockHighlighted(for blockPosition: Int) -> Bool {
+        return true
+    }
+}
+
+private extension BerlinClockScreenViewModel {
+    func formatCurrentTime() {
+        currentTime = ""
     }
 }

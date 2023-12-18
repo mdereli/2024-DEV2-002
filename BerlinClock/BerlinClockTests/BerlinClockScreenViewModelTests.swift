@@ -40,4 +40,12 @@ final class BerlinClockScreenViewModelTests: XCTestCase {
     func testIs1HourBlockHighlighted() {
         XCTAssertFalse(sut.is1HourBlockHighlighted(for: 1))
     }
+
+    func testIs5minutesBlockHighlighted() {
+        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: 1))
+    }
+
+    func testIs1minuteBlockHighlighted() {
+        XCTAssertFalse(sut.is1minuteBlockHighlighted(for: 1))
+    }
 }
