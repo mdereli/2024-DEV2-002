@@ -18,7 +18,7 @@ final class BerlinClockScreenViewModelTests: XCTestCase {
     }
 
     func testNumberOf1HoursLamps() {
-        XCTAssertEqual(sut.numberOf1HoursLamps, 4)
+        XCTAssertEqual(sut.numberOf1HourLamps, 4)
     }
 
     func testNumberOf5MinutesLamps() {
@@ -26,6 +26,10 @@ final class BerlinClockScreenViewModelTests: XCTestCase {
     }
 
     func testNumberOf1MinutesLamps() {
-        XCTAssertEqual(sut.numberOf1MinutesLamps, 4)
+        XCTAssertEqual(sut.numberOf1MinuteLamps, 4)
+    }
+
+    func testCurentTime() {
+        XCTAssertFalse(sut.currentTime.isEmpty)
     }
 }
