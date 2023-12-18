@@ -10,7 +10,10 @@ final class BerlinClockScreenViewModel: ObservableObject {
     let numberOf5MinutesLamps: Int
     let numberOf1MinuteLamps: Int
 
-    init() {
+    private let date: Date
+
+    init(date: Date = Date()) {
+        self.date = date
         numberOf5HoursLamps = 10
         numberOf1HourLamps = 10
         numberOf5MinutesLamps = 10
@@ -20,19 +23,19 @@ final class BerlinClockScreenViewModel: ObservableObject {
     }
 
     func is5HoursBlockHighlighted(for blockPosition: Int) -> Bool {
-        return true
+        return false
     }
 
     func is1HourBlockHighlighted(for blockPosition: Int) -> Bool {
-        return true
+        return false
     }
 
-    func is5minutesBlockHighlighted(for blockPosition: Int) -> Bool{
-        return true
+    func is5minutesBlockHighlighted(for blockPosition: Int) -> Bool {
+        return false
     }
 
     func is1minuteBlockHighlighted(for blockPosition: Int) -> Bool {
-        return true
+        return false
     }
 }
 
