@@ -11,6 +11,7 @@ final class BerlinClockScreenViewModel: ObservableObject {
     let numberOf1MinuteLamps: Int
 
     private let date: Date
+    private let timer: Timer.TimerPublisher
 
     init(date: Date = Date()) {
         self.date = date
@@ -18,6 +19,7 @@ final class BerlinClockScreenViewModel: ObservableObject {
         numberOf1HourLamps = 10
         numberOf5MinutesLamps = 10
         numberOf1MinuteLamps = 10
+        timer = Timer.publish(every: 1, on: .main, in: .common)
 
         formatCurrentTime()
     }

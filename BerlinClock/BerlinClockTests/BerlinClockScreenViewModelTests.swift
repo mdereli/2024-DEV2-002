@@ -18,6 +18,16 @@ final class BerlinClockScreenViewModelTests: XCTestCase {
         XCTAssertFalse(sut.isLampOn)
     }
 
+    func testLampToggleAfter1Second() {
+        let toggleExpectation = XCTestExpectation(description: "testLampIsOn")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            XCTAssertTrue(self.sut.isLampOn)
+            toggleExpectation.fulfill()
+        })
+
+        wait(for: [toggleExpectation], timeout: 1.5)
+    }
+
     func testNumberOf5HoursLamps() {
         XCTAssertEqual(sut.numberOf5HoursLamps, 4)
     }
@@ -35,7 +45,7 @@ final class BerlinClockScreenViewModelTests: XCTestCase {
     }
 
     func testCurentTime() {
-        XCTAssertFalse(sut.currentTime.isEmpty)
+        XCTAssertEqual(sut.currentTime, "18:48")
     }
 
     func testIs5HoursBlockHighlighted() {
