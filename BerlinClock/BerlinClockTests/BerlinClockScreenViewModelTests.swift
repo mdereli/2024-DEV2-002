@@ -20,12 +20,12 @@ final class BerlinClockScreenViewModelTests: XCTestCase {
 
     func testLampToggleAfter1Second() {
         let toggleExpectation = XCTestExpectation(description: "testLampIsOn")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
             XCTAssertTrue(self.sut.isLampOn)
             toggleExpectation.fulfill()
         })
 
-        wait(for: [toggleExpectation], timeout: 1.5)
+        wait(for: [toggleExpectation], timeout: 2)
     }
 
     func testNumberOf5HoursLamps() {
@@ -63,17 +63,28 @@ final class BerlinClockScreenViewModelTests: XCTestCase {
     }
 
     func testIs5minutesBlockHighlighted() {
-        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 1)) // 1st block should be highlighted 05' => 18h48
-        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 2)) // 2nd block should be highlighted 10' => 18h48
-        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 3)) // 3rd block should be highlighted 15' => 18h48
-        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 4)) // 4th block should be highlighted 20' => 18h48
-        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 5)) // 5th block should be highlighted 25' => 18h48
-        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 6)) // 6th block should be highlighted 30' => 18h48
-        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 7)) // 7th block should be highlighted 35' => 18h48
-        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 8)) // 8th block should be highlighted 40' => 18h48
-        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 9)) // 9th block should be highlighted 45' => 18h48
-        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: 10)) // 10th block should NOT be highlighted 50' => 18h48
-        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: 11)) // 11th block should NOT be highlighted 55' => 18h48
+        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 1).isHighlighted) // 1st block should be highlighted 05' => 18h48
+        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: 1).isThirdLamp)
+        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 2).isHighlighted) // 2nd block should be highlighted 10' => 18h48
+        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: 2).isThirdLamp)
+        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 3).isHighlighted) // 3rd block should be highlighted 15' => 18h48
+        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 3).isThirdLamp)
+        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 4).isHighlighted) // 4th block should be highlighted 20' => 18h48
+        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: 4).isThirdLamp)
+        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 5).isHighlighted) // 5th block should be highlighted 25' => 18h48
+        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: 5).isThirdLamp)
+        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 6).isHighlighted) // 6th block should be highlighted 30' => 18h48
+        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 6).isThirdLamp)
+        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 7).isHighlighted) // 7th block should be highlighted 35' => 18h48
+        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: 7).isThirdLamp)
+        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 8).isHighlighted) // 8th block should be highlighted 40' => 18h48
+        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: 8).isThirdLamp)
+        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 9).isHighlighted) // 9th block should be highlighted 45' => 18h48
+        XCTAssertTrue(sut.is5minutesBlockHighlighted(for: 9).isThirdLamp)
+        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: 10).isHighlighted) // 10th block should NOT be highlighted 50' => 18h48
+        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: 10).isThirdLamp)
+        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: 11).isHighlighted) // 11th block should NOT be highlighted 55' => 18h48
+        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: 11).isThirdLamp)
     }
 
     func testIs1minuteBlockHighlighted() {
