@@ -37,7 +37,7 @@ final class BerlinClockScreenViewModel: ObservableObject {
         guard blockPosition > 0 && blockPosition <= Constants.fiveHoursRow else { return false }
 
         let hour = calendar.component(.hour, from: date)
-        let fiveHoursBlocks = (hour % Constants.hoursInDay) / Constants.fiveHours
+        let fiveHoursBlocks = hour / Constants.fiveHours
 
         return fiveHoursBlocks >= blockPosition
     }
@@ -46,7 +46,7 @@ final class BerlinClockScreenViewModel: ObservableObject {
         guard blockPosition > 0 && blockPosition <= Constants.oneHourRow else { return false }
 
         let hour = calendar.component(.hour, from: date)
-        let fiveHoursBlocks = (hour % Constants.hoursInDay) / Constants.fiveHours
+        let fiveHoursBlocks = hour / Constants.fiveHours
         let oneHourBlocks = hour - (fiveHoursBlocks * Constants.fiveHours)
 
         return oneHourBlocks >= blockPosition
@@ -103,10 +103,9 @@ private extension BerlinClockScreenViewModel {
         static let fiveMinutesRow: Int = 11
         static let oneMinuteRow: Int = 4
         static let oneSecond: Double = 1.0
-        static let hoursInDay: Int = 24
         static let fiveHours: Int = 5
         static let fiveMinutes: Int = 5
         static let third: Int = 3
-        static let timeFormat: String = "%02d:%02d"
+        static let timeFormat: String = "%d:%d"
     }
 }

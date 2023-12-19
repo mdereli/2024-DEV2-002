@@ -1,13 +1,13 @@
 //
-//  BerlinClockUITests.swift
+//  BerlinClockScreenUITests.swift
 //  BerlinClockUITests
 //
-//  Created by Mikail Dereli on 16/12/2023.
+//  Created by Mikail Dereli on 19/12/2023.
 //
 
 import XCTest
 
-final class BerlinClockUITests: XCTestCase {
+final class BerlinClockScreenUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
