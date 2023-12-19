@@ -93,4 +93,28 @@ final class BerlinClockScreenViewModelTests: XCTestCase {
         XCTAssertTrue(sut.is1minuteBlockHighlighted(for: 3)) // 3rd block should be highlighted 48' => 18h48
         XCTAssertFalse(sut.is1minuteBlockHighlighted(for: 4)) // 4th block should NOT be highlighted 49' => 18h48
     }
+
+    func testIs5HoursBlockHighlighted_InvalidBlockPosition() {
+        // Test if the application correctly handles an invalid block position (e.g. 0 or greater than numberOf5HoursLamps)
+        XCTAssertFalse(sut.is5HoursBlockHighlighted(for: 0))
+        XCTAssertFalse(sut.is5HoursBlockHighlighted(for: sut.numberOf5HoursLamps + 1))
+    }
+
+    func testIs1HourBlockHighlighted_InvalidBlockPosition() {
+        // Test if the application correctly handles an invalid block position (e.g. 0 or greater than numberOf1HourLamps)
+        XCTAssertFalse(sut.is1HourBlockHighlighted(for: 0))
+        XCTAssertFalse(sut.is1HourBlockHighlighted(for: sut.numberOf1HourLamps + 1))
+    }
+
+    func testIs5MinutesBlockHighlighted_InvalidBlockPosition() {
+        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: 0).isHighlighted)
+        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: 0).isThirdLamp)
+        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: sut.numberOf5MinutesLamps + 1).isHighlighted)
+        XCTAssertFalse(sut.is5minutesBlockHighlighted(for: sut.numberOf5MinutesLamps + 1).isThirdLamp)
+    }
+
+    func testIs1MinuteBlockHighlighted_InvalidBlockPosition() {
+        XCTAssertFalse(sut.is1minuteBlockHighlighted(for: 0))
+        XCTAssertFalse(sut.is1minuteBlockHighlighted(for: sut.numberOf1MinuteLamps + 1))
+    }
 }

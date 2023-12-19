@@ -17,20 +17,25 @@ final class BerlinClockScreenViewModel: ObservableObject {
     private var date: Date
     private var timerCancellable = Set<AnyCancellable>()
 
-    init(date: Date = Date()) {
+    init(
+        date: Date = Date(),
+        calendar: Calendar = Calendar.current,
+        timer: Timer.TimerPublisher = Timer.publish(every: Constants.oneSecond, on: .main, in: .common)) {
         self.date = date
-        calendar = Calendar.current
+        self.timer = timer
+        self.calendar = calendar
         numberOf5HoursLamps = Constants.fiveHoursRow
         numberOf1HourLamps = Constants.oneHourRow
         numberOf5MinutesLamps = Constants.fiveMinutesRow
         numberOf1MinuteLamps = Constants.oneMinuteRow
-        timer = Timer.publish(every: Constants.oneSecond, on: .main, in: .common)
 
         bindTimer()
         formatCurrentTime()
     }
 
     func is5HoursBlockHighlighted(for blockPosition: Int) -> Bool {
+        guard blockPosition > 0 && blockPosition <= Constants.fiveHoursRow else { return false }
+
         let hour = calendar.component(.hour, from: date)
         let fiveHoursBlocks = (hour % Constants.hoursInDay) / Constants.fiveHours
 
@@ -38,6 +43,8 @@ final class BerlinClockScreenViewModel: ObservableObject {
     }
 
     func is1HourBlockHighlighted(for blockPosition: Int) -> Bool {
+        guard blockPosition > 0 && blockPosition <= Constants.oneHourRow else { return false }
+
         let hour = calendar.component(.hour, from: date)
         let fiveHoursBlocks = (hour % Constants.hoursInDay) / Constants.fiveHours
         let oneHourBlocks = hour - (fiveHoursBlocks * Constants.fiveHours)
@@ -46,6 +53,8 @@ final class BerlinClockScreenViewModel: ObservableObject {
     }
 
     func is5minutesBlockHighlighted(for blockPosition: Int) -> (isHighlighted: Bool, isThirdLamp: Bool) {
+        guard blockPosition > 0 && blockPosition <= Constants.fiveMinutesRow else { return (false, false) }
+
         let minute = calendar.component(.minute, from: date)
         let isHighlighted = (blockPosition * Constants.fiveHours) <= minute
         let isThirdLamp = blockPosition % Constants.third == 0
@@ -54,6 +63,8 @@ final class BerlinClockScreenViewModel: ObservableObject {
     }
 
     func is1minuteBlockHighlighted(for blockPosition: Int) -> Bool {
+        guard blockPosition > 0 && blockPosition <= Constants.oneMinuteRow else { return false }
+
         let minute = calendar.component(.minute, from: date)
         let oneMinuteBlocks = minute % Constants.fiveMinutes
 
