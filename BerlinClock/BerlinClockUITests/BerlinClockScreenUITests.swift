@@ -9,33 +9,49 @@ import XCTest
 
 final class BerlinClockScreenUITests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var app: XCUIApplication!
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+    override func setUp() {
+        super.setUp()
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+        app = XCUIApplication()
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    func testLampCircle() {
+        let lamp = app.otherElements["lamp"]
+        XCTAssertTrue(lamp.exists)
+        XCTAssertEqual(lamp.frame.size.width, 51) // frame + lineWidth
+        XCTAssertEqual(lamp.frame.size.height, 51) // frame + lineWidth
+    }
+
+    func test5HoursBlock() {
+        let fiveHoursBlock = app.otherElements.matching(identifier: "fiveHoursBlock").firstMatch
+        XCTAssertTrue(fiveHoursBlock.exists)
+        XCTAssertEqual(fiveHoursBlock.frame.size.height, 41) // rectangleFrame frame + lineWidth
+    }
+
+    func test1HourBlock() {
+        let oneHourBlock = app.otherElements.matching(identifier: "oneHourBlock").firstMatch
+        XCTAssertTrue(oneHourBlock.exists)
+        XCTAssertEqual(oneHourBlock.frame.size.height, 41) // rectangleFrame frame + lineWidth
+    }
+
+    func test5MinutesBlock() {
+        let fiveMinutesBlock = app.otherElements.matching(identifier: "fiveMinutesBlock").firstMatch
+        XCTAssertTrue(fiveMinutesBlock.exists)
+        XCTAssertEqual(fiveMinutesBlock.frame.size.height, 41) // rectangleFrame frame + lineWidth
+    }
+
+    func test1MinuteBlock() {
+        let oneMinuteBlock = app.otherElements.matching(identifier: "oneMinuteBlock").firstMatch
+        XCTAssertTrue(oneMinuteBlock.exists)
+        XCTAssertEqual(oneMinuteBlock.frame.size.height, 41) // rectangleFrame frame + lineWidth
+    }
+
+    func testCurrentTime() {
+        let text = app.staticTexts["currentTime"]
+        XCTAssertTrue(text.exists)
+        XCTAssertFalse(text.label.isEmpty)
     }
 }
