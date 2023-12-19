@@ -34,36 +34,36 @@ final class BerlinClockScreenViewModel: ObservableObject {
     }
 
     func is5HoursBlockHighlighted(for blockPosition: Int) -> Bool {
-        guard blockPosition > 0 && blockPosition <= Constants.fiveHoursRow else { return false }
+        guard blockPosition > 0 && blockPosition <= Constants.fiveHoursRow else { return false } // return false if wrong block position
 
         let hour = calendar.component(.hour, from: date)
-        let fiveHoursBlocks = hour / Constants.fiveHours
+        let fiveHoursBlocks = hour / Constants.fiveHours // the division is rounded (ex: 18 / 5 = 3) => 3 blocks of 5 hours
 
-        return fiveHoursBlocks >= blockPosition
+        return fiveHoursBlocks >= blockPosition // check if block position is less or equal to 5hours blocks number
     }
 
     func is1HourBlockHighlighted(for blockPosition: Int) -> Bool {
-        guard blockPosition > 0 && blockPosition <= Constants.oneHourRow else { return false }
+        guard blockPosition > 0 && blockPosition <= Constants.oneHourRow else { return false } // return false if wrong block position
 
         let hour = calendar.component(.hour, from: date)
         let fiveHoursBlocks = hour / Constants.fiveHours
-        let oneHourBlocks = hour - (fiveHoursBlocks * Constants.fiveHours)
+        let oneHourBlocks = hour - (fiveHoursBlocks * Constants.fiveHours) // retrive 5hours blocks from hour (ex: 18h - (3 x 5h) = 3h)
 
-        return oneHourBlocks >= blockPosition
+        return oneHourBlocks >= blockPosition // check if block position is less or equal to 1hour blocks number
     }
 
     func is5minutesBlockHighlighted(for blockPosition: Int) -> (isHighlighted: Bool, isThirdLamp: Bool) {
-        guard blockPosition > 0 && blockPosition <= Constants.fiveMinutesRow else { return (false, false) }
+        guard blockPosition > 0 && blockPosition <= Constants.fiveMinutesRow else { return (false, false) } // return false if wrong block position
 
         let minute = calendar.component(.minute, from: date)
-        let isHighlighted = (blockPosition * Constants.fiveHours) <= minute
-        let isThirdLamp = blockPosition % Constants.third == 0
+        let isHighlighted = (blockPosition * Constants.fiveMinutes) <= minute //  check if block position x 5 minutes is less or equal to minutes
+        let isThirdLamp = blockPosition % Constants.third == 0 // check if the block position is a multiple of 3
 
         return (isHighlighted, isThirdLamp)
     }
 
     func is1minuteBlockHighlighted(for blockPosition: Int) -> Bool {
-        guard blockPosition > 0 && blockPosition <= Constants.oneMinuteRow else { return false }
+        guard blockPosition > 0 && blockPosition <= Constants.oneMinuteRow else { return false } // return false if wrong block position
 
         let minute = calendar.component(.minute, from: date)
         let oneMinuteBlocks = minute % Constants.fiveMinutes

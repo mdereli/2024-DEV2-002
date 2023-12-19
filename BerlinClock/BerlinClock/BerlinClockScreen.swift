@@ -55,6 +55,7 @@ struct BerlinClockScreen: View {
             }
             .accessibility(identifier: AccessibilityIdentifier.oneMinuteBlock)
 
+            // Time in string
             Text(viewModel.currentTime)
                 .font(.title)
                 .foregroundColor(.primary)
